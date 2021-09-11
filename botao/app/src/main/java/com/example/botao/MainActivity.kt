@@ -3,6 +3,7 @@ package com.example.botao
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 
@@ -22,12 +23,21 @@ class MainActivity : AppCompatActivity() {
     private fun rollDice() {
         /**Criando a instancia Dice, (setando o valor)*/
         val dice = Dice(6)
-        /** Chamando a funcao roll, craida abaixo*/
+        /** Chamando a funcao roll, criada abaixo*/
         val diceRoll = dice.roll()
         /** Variavel para o resultado aparecer*/
-        val resultTextView: TextView = findViewById(R.id.textView)
+        val diceImage: ImageView = findViewById(R.id.imageView)
         /** toString para converter, pois ele espera receber um string e na classe Dice o parametro é Int*/
-        resultTextView.text = diceRoll.toString()
+        when (diceRoll){
+            1 -> diceImage.setImageResource(R.drawable.dice_1)
+            2 -> diceImage.setImageResource(R.drawable.dice_2)
+            3 -> diceImage.setImageResource(R.drawable.dice_3)
+            4 -> diceImage.setImageResource(R.drawable.dice_4)
+            5 -> diceImage.setImageResource(R.drawable.dice_5)
+            6 -> diceImage.setImageResource(R.drawable.dice_6)
+        }
+        val toast = Toast.makeText(this, "Rolou um dado!", Toast.LENGTH_SHORT)
+        toast.show()
     }
 }
 /** Esta classe poderia ser feita em File-New-KotlinClass/file. O numero que ela ira receber esta instanciado na fun rollDice */

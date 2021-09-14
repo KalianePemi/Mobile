@@ -27,16 +27,17 @@ class MainActivity : AppCompatActivity() {
         val diceRoll = dice.roll()
         /** Variavel para o resultado aparecer*/
         val diceImage: ImageView = findViewById(R.id.imageView)
-        /** toString para converter, pois ele espera receber um string e na classe Dice o parametro é Int*/
-        when (diceRoll){
-            1 -> diceImage.setImageResource(R.drawable.dice_1)
-            2 -> diceImage.setImageResource(R.drawable.dice_2)
-            3 -> diceImage.setImageResource(R.drawable.dice_3)
-            4 -> diceImage.setImageResource(R.drawable.dice_4)
-            5 -> diceImage.setImageResource(R.drawable.dice_5)
-            6 -> diceImage.setImageResource(R.drawable.dice_6)
+        val drawableResource = when(diceRoll){
+            1 -> R.drawable.dice_1
+            2 -> R.drawable.dice_2
+            3 -> R.drawable.dice_3
+            4 -> R.drawable.dice_4
+            5 -> R.drawable.dice_5
+            else -> R.drawable.dice_6
         }
-        val toast = Toast.makeText(this, "Rolou um dado!", Toast.LENGTH_SHORT)
+        diceImage.setImageResource(drawableResource)
+        diceImage.contentDescription = diceRoll.toString()
+        val toast = Toast.makeText(this, "Rolou um dado, seu número é " + diceRoll, Toast.LENGTH_SHORT)
         toast.show()
     }
 }
